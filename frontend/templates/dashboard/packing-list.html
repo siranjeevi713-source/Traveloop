@@ -1,0 +1,234 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Packing List{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>Packing List</h2>
+    <div class="header-actions">
+        <select class="glass-input">
+            <option>Kerala Getaway</option>
+            <option>Bali Expedition</option>
+        </select>
+        <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px;">+ Add Item</button>
+    </div>
+</div>
+
+<div class="packing-container">
+    <div class="packing-sidebar">
+        <div class="glass-card packing-progress-card">
+            <h3>Progress</h3>
+            <div class="circular-progress">
+                <span class="progress-value">65%</span>
+            </div>
+            <p>13 of 20 items packed</p>
+        </div>
+        
+        <div class="glass-card category-filters">
+            <h3>Categories</h3>
+            <ul>
+                <li class="active">All Items <span>20</span></li>
+                <li>Clothes <span>8</span></li>
+                <li>Electronics <span>4</span></li>
+                <li>Documents <span>3</span></li>
+                <li>Medicines <span>2</span></li>
+                <li>Essentials <span>3</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="packing-main">
+        <div class="glass-card">
+            <div class="packing-group">
+                <h3>Clothes</h3>
+                <div class="packing-item">
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        <span class="item-text">Cotton T-shirts (5)</span>
+                    </label>
+                    <i class="fas fa-trash-alt delete-item"></i>
+                </div>
+                <div class="packing-item">
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        <span class="item-text">Walking Shoes</span>
+                    </label>
+                    <i class="fas fa-trash-alt delete-item"></i>
+                </div>
+                <div class="packing-item">
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">Swimwear</span>
+                    </label>
+                    <i class="fas fa-trash-alt delete-item"></i>
+                </div>
+            </div>
+            
+            <div class="packing-group">
+                <h3>Electronics</h3>
+                <div class="packing-item">
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        <span class="item-text">Power Bank</span>
+                    </label>
+                    <i class="fas fa-trash-alt delete-item"></i>
+                </div>
+                <div class="packing-item">
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">Universal Adapter</span>
+                    </label>
+                    <i class="fas fa-trash-alt delete-item"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.packing-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+}
+
+.packing-progress-card {
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.circular-progress {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-color) 65%, rgba(0,0,0,0.05) 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    position: relative;
+}
+
+.circular-progress::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    z-index: 1;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.category-filters {
+    padding: 20px;
+}
+
+.category-filters ul li {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.category-filters ul li:hover {
+    background: rgba(0,0,0,0.02);
+}
+
+.category-filters ul li.active {
+    background: var(--gradient-primary);
+    color: #fff;
+}
+
+.packing-main .glass-card {
+    padding: 30px;
+}
+
+.packing-group h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.packing-group {
+    margin-bottom: 30px;
+}
+
+.packing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--glass-border);
+    border-radius: 6px;
+    position: relative;
+}
+
+.checkbox-container input:checked + .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked + .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-container input:checked ~ .item-text {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.delete-item {
+    color: var(--text-muted);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.packing-item:hover .delete-item {
+    opacity: 1;
+}
+</style>
+{% endblock %}

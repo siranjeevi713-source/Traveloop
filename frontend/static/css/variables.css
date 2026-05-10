@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #6c5ce7;
+    --primary-light: #a29bfe;
+    --secondary-color: #00cec9;
+    --accent-color: #fab1a0;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --bg-main: #f9f9fb;
+    --sidebar-bg: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+    
+    --gradient-primary: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    --gradient-success: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+    --gradient-info: linear-gradient(135deg, #81ecec 0%, #00cec9 100%);
+    --gradient-warning: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    --gradient-danger: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+}

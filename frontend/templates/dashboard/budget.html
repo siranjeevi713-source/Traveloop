@@ -1,0 +1,164 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Budget Analytics{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>Budget Analytics</h2>
+    <div class="header-actions">
+        <select class="glass-input">
+            <option>All Trips</option>
+            <option>Kerala Getaway</option>
+            <option>Bali Expedition</option>
+        </select>
+        <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px;">+ Add Expense</button>
+    </div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card glass-card">
+        <div class="stat-info">
+            <p>Total Spent</p>
+            <h3>₹1,30,000</h3>
+        </div>
+    </div>
+    <div class="stat-card glass-card">
+        <div class="stat-info">
+            <p>Remaining Budget</p>
+            <h3>₹20,000</h3>
+        </div>
+    </div>
+    <div class="stat-card glass-card">
+        <div class="stat-info">
+            <p>Daily Average</p>
+            <h3>₹7,222</h3>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <div class="glass-card" style="padding: 30px;">
+        <h3>Expense Distribution</h3>
+        <div style="height: 300px; margin-top: 20px;">
+            <canvas id="expense-pie-chart"></canvas>
+        </div>
+    </div>
+    
+    <div class="glass-card" style="padding: 30px;">
+        <h3>Daily Expenses</h3>
+        <div style="height: 300px; margin-top: 20px;">
+            <canvas id="daily-expense-chart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="glass-card" style="padding: 30px; margin-top: 25px;">
+    <div class="section-header">
+        <h3>Recent Expenses</h3>
+        <a href="#" class="view-all">Download Report</a>
+    </div>
+    <table class="expense-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12 May 2025</td>
+                <td>Flight to Kochi</td>
+                <td><span class="badge blue">Transport</span></td>
+                <td>₹15,000</td>
+                <td><i class="fas fa-ellipsis-h"></i></td>
+            </tr>
+            <tr>
+                <td>13 May 2025</td>
+                <td>Houseboat Booking</td>
+                <td><span class="badge green">Stay</span></td>
+                <td>₹12,000</td>
+                <td><i class="fas fa-ellipsis-h"></i></td>
+            </tr>
+            <tr>
+                <td>14 May 2025</td>
+                <td>Dinner at Fort Kochi</td>
+                <td><span class="badge yellow">Food</span></td>
+                <td>₹2,500</td>
+                <td><i class="fas fa-ellipsis-h"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const pieCtx = document.getElementById('expense-pie-chart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Hotel', 'Transport', 'Food', 'Activities', 'Shopping'],
+            datasets: [{
+                data: [45000, 35000, 20000, 15000, 15000],
+                backgroundColor: ['#6c5ce7', '#55efc4', '#fdcb6e', '#ff7675', '#a29bfe'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    const lineCtx = document.getElementById('daily-expense-chart').getContext('2d');
+    new Chart(lineCtx, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Expenses',
+                data: [5000, 8000, 4500, 12000, 7000, 15000, 9000],
+                borderColor: '#6c5ce7',
+                tension: 0.4,
+                fill: true,
+                backgroundColor: 'rgba(108, 92, 231, 0.1)'
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+});
+</script>
+<style>
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.expense-table th {
+    text-align: left;
+    padding: 15px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.expense-table td {
+    padding: 15px;
+    border-top: 1px solid var(--glass-border);
+    font-size: 14px;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge.blue { background: rgba(108, 92, 231, 0.1); color: #6c5ce7; }
+.badge.green { background: rgba(85, 239, 196, 0.1); color: #00b894; }
+.badge.yellow { background: rgba(253, 203, 110, 0.1); color: #e17055; }
+</style>
+{% endblock %}

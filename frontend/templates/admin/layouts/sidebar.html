@@ -1,0 +1,54 @@
+<div class="sidebar glass-sidebar">
+    <div class="sidebar-logo" style="text-align: center; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+        <img src="{{ url_for('static', filename='images/logo/logo.svg') }}" alt="Traveloop" style="width: 140px; display: block; margin: 0 auto 10px auto;">
+        <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5;">Admin Portal</span>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <ul>
+            <li class="{% if request.endpoint == 'admin.dashboard' %}active{% endif %}">
+                <a href="{{ url_for('admin.dashboard') }}">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{% if request.endpoint == 'admin.users' %}active{% endif %}">
+                <a href="{{ url_for('admin.users') }}">
+                    <i class="fas fa-users-cog"></i>
+                    <span>User Management</span>
+                </a>
+            </li>
+            <li class="{% if request.endpoint == 'admin.trips' %}active{% endif %}">
+                <a href="{{ url_for('admin.trips') }}">
+                    <i class="fas fa-plane-arrival"></i>
+                    <span>Trip Oversight</span>
+                </a>
+            </li>
+            <li class="{% if request.endpoint == 'admin.analytics' %}active{% endif %}">
+                <a href="{{ url_for('admin.analytics') }}">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Global Analytics</span>
+                </a>
+            </li>
+            <li class="{% if request.endpoint == 'admin.reports' %}active{% endif %}">
+                <a href="{{ url_for('admin.reports') }}">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li class="{% if request.endpoint == 'admin.settings' %}active{% endif %}">
+                <a href="{{ url_for('admin.settings') }}">
+                    <i class="fas fa-cogs"></i>
+                    <span>System Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="sidebar-footer">
+        <a href="{{ url_for('admin.logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>

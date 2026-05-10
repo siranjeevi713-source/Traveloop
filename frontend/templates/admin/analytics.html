@@ -1,0 +1,89 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block title %}Global Analytics{% endblock %}
+
+{% block content %}
+<div class="admin-analytics-container">
+    <div class="section-header">
+        <h2>Global Analytics</h2>
+    </div>
+
+    <div class="analytics-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+        <div class="glass-card" style="padding: 25px;">
+            <h4>Trip Distribution by Destination</h4>
+            <div style="height: 400px; margin-top: 20px;">
+                <canvas id="destChart"></canvas>
+            </div>
+        </div>
+        <div class="glass-card" style="padding: 25px;">
+            <h4>Budget Trends</h4>
+            <div style="height: 400px; margin-top: 20px;">
+                <canvas id="budgetChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-top: 30px;">
+        <div class="glass-card" style="padding: 20px;">
+            <h5>Top Activity Types</h5>
+            <canvas id="activityChart" style="margin-top: 15px;"></canvas>
+        </div>
+        <div class="glass-card" style="padding: 20px;">
+            <h5>Popular Travel Types</h5>
+            <canvas id="typeChart" style="margin-top: 15px;"></canvas>
+        </div>
+        <div class="glass-card" style="padding: 20px;">
+            <h5>System Reliability</h5>
+            <div style="text-align: center; margin-top: 40px;">
+                <h1 style="font-size: 48px; color: #00b894;">99.9%</h1>
+                <p style="opacity: 0.7;">Uptime this month</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Destination Chart
+    new Chart(document.getElementById('destChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['Bali', 'Swiss', 'Thai', 'Goa', 'Kerala', 'Dubai'],
+            datasets: [{
+                label: 'Trips',
+                data: [450, 320, 580, 720, 640, 210],
+                backgroundColor: 'rgba(108, 92, 231, 0.6)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    // Budget Trends (Radar)
+    new Chart(document.getElementById('budgetChart').getContext('2d'), {
+        type: 'radar',
+        data: {
+            labels: ['Hotel', 'Transport', 'Food', 'Activities', 'Shopping'],
+            datasets: [{
+                label: 'Spending',
+                data: [85, 90, 70, 60, 40],
+                borderColor: '#00cec9',
+                backgroundColor: 'rgba(0, 206, 201, 0.2)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Itinerary{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>Trip Itinerary</h2>
+    <div class="header-actions">
+        <select class="glass-input">
+            <option>Kerala Getaway</option>
+            <option>Bali Expedition</option>
+        </select>
+        <div class="view-toggle glass-input" style="padding: 5px; display: flex; gap: 5px;">
+            <button class="active">Timeline</button>
+            <button>Calendar</button>
+        </div>
+    </div>
+</div>
+
+<div class="itinerary-container">
+    <div class="itinerary-timeline">
+        <!-- Day 1 -->
+        <div class="itinerary-day">
+            <div class="day-sidebar">
+                <div class="day-label">Day 1</div>
+                <div class="day-date">20 May</div>
+            </div>
+            <div class="day-content">
+                <div class="glass-card activity-card">
+                    <div class="activity-time">09:00 AM</div>
+                    <div class="activity-body">
+                        <h4>Arrival at Kochi Airport</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Cochin International Airport</p>
+                        <span class="activity-tag transport">Transport</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card activity-card">
+                    <div class="activity-time">12:30 PM</div>
+                    <div class="activity-body">
+                        <h4>Check-in at Fort Kochi Hotel</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Fort Kochi</p>
+                        <span class="activity-tag stay">Stay</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card activity-card">
+                    <div class="activity-time">04:00 PM</div>
+                    <div class="activity-body">
+                        <h4>Chinese Fishing Nets Visit</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Fort Kochi Beach</p>
+                        <span class="activity-tag sightseeing">Sightseeing</span>
+                    </div>
+                </div>
+                
+                <button class="add-activity-btn">+ Add Activity</button>
+            </div>
+        </div>
+        
+        <!-- Day 2 -->
+        <div class="itinerary-day">
+            <div class="day-sidebar">
+                <div class="day-label">Day 2</div>
+                <div class="day-date">21 May</div>
+            </div>
+            <div class="day-content">
+                <div class="glass-card activity-card">
+                    <div class="activity-time">10:00 AM</div>
+                    <div class="activity-body">
+                        <h4>Mattancherry Palace Tour</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Mattancherry</p>
+                        <span class="activity-tag cultural">Cultural</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.itinerary-timeline {
+    position: relative;
+    padding-left: 50px;
+}
+
+.itinerary-timeline::before {
+    content: '';
+    position: absolute;
+    left: 120px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--glass-border);
+}
+
+.itinerary-day {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.day-sidebar {
+    width: 80px;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.day-label {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.day-date {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.day-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.day-content::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--primary-color);
+    z-index: 1;
+}
+
+.activity-card {
+    display: flex;
+    gap: 25px;
+    padding: 20px;
+}
+
+.activity-time {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-muted);
+    min-width: 80px;
+}
+
+.activity-body h4 {
+    margin-bottom: 5px;
+}
+
+.activity-body p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.activity-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.activity-tag.transport { background: rgba(108, 92, 231, 0.1); color: #6c5ce7; }
+.activity-tag.stay { background: rgba(85, 239, 196, 0.1); color: #00b894; }
+.activity-tag.sightseeing { background: rgba(253, 203, 110, 0.1); color: #e17055; }
+.activity-tag.cultural { background: rgba(129, 236, 236, 0.1); color: #00cec9; }
+
+.add-activity-btn {
+    align-self: flex-start;
+    padding: 10px 20px;
+    border: 2px dashed var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.add-activity-btn:hover {
+    background: rgba(0,0,0,0.02);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+</style>
+{% endblock %}

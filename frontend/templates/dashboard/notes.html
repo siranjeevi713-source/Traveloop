@@ -1,0 +1,128 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Trip Notes{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>Journal & Notes</h2>
+    <div class="header-actions">
+        <button class="btn-primary" style="padding: 10px 20px; border-radius: 12px;">+ New Note</button>
+    </div>
+</div>
+
+<div class="notes-grid">
+    <div class="note-card glass-card hover-scale">
+        <div class="note-header">
+            <h3>Kochi Sightseeing 📸</h3>
+            <span class="note-date">12 May 2025</span>
+        </div>
+        <p class="note-excerpt">Met a local fisherman who told us about the history of the Chinese nets. Must try the fried fish at the corner stall next time...</p>
+        <div class="note-footer">
+            <span class="note-trip">Kerala Getaway</span>
+            <div class="note-actions">
+                <i class="fas fa-edit"></i>
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-card glass-card hover-scale">
+        <div class="note-header">
+            <h3>Packing Checklist Tips</h3>
+            <span class="note-date">05 May 2025</span>
+        </div>
+        <p class="note-excerpt">Don't forget the waterproof phone pouch for the backwater tour. Also, carrying extra power bank is essential for the long boat rides...</p>
+        <div class="note-footer">
+            <span class="note-trip">General</span>
+            <div class="note-actions">
+                <i class="fas fa-edit"></i>
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-card glass-card hover-scale">
+        <div class="note-header">
+            <h3>Bali Hidden Gems 💎</h3>
+            <span class="note-date">20 Mar 2024</span>
+        </div>
+        <p class="note-excerpt">Found a small cafe in Ubud overlooking the rice terraces. Very quiet and peaceful. Price was half of what they charge in the center...</p>
+        <div class="note-footer">
+            <span class="note-trip">Bali Expedition</span>
+            <div class="note-actions">
+                <i class="fas fa-edit"></i>
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.note-card {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.note-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.note-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.note-excerpt {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.note-trip {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: rgba(108, 92, 231, 0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.note-actions {
+    display: flex;
+    gap: 15px;
+    color: var(--text-muted);
+}
+
+.note-actions i:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+</style>
+{% endblock %}

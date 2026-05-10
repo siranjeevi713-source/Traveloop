@@ -1,0 +1,74 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block title %}User Management{% endblock %}
+
+{% block content %}
+<div class="admin-users-container">
+    <div class="section-header">
+        <h2>Users Management</h2>
+        <div class="header-actions" style="display: flex; gap: 15px;">
+            <div class="search-bar glass-input" style="width: 300px;">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search users by name or email...">
+            </div>
+            <button class="btn-primary"><i class="fas fa-filter"></i> Filter</button>
+        </div>
+    </div>
+
+    <div class="glass-card" style="margin-top: 30px; overflow-x: auto;">
+        <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <th style="padding: 20px;">Profile</th>
+                    <th style="padding: 20px;">Name</th>
+                    <th style="padding: 20px;">Email</th>
+                    <th style="padding: 20px;">Trips</th>
+                    <th style="padding: 20px;">Joined Date</th>
+                    <th style="padding: 20px;">Status</th>
+                    <th style="padding: 20px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 20px;">
+                        <img src="{{ url_for('static', filename='images/avatars/' + user.profile_image) }}" alt="User" style="width: 40px; height: 40px; border-radius: 50%;">
+                    </td>
+                    <td style="padding: 20px; font-weight: 500;">{{ user.full_name }}</td>
+                    <td style="padding: 20px; opacity: 0.7;">{{ user.email }}</td>
+                    <td style="padding: 20px;">{{ user.trips|length }}</td>
+                    <td style="padding: 20px; opacity: 0.7;">{{ user.created_at.strftime('%d %b %Y') }}</td>
+                    <td style="padding: 20px;">
+                        <span class="status-badge active" style="background: rgba(85, 239, 196, 0.1); color: #00b894; padding: 5px 12px; border-radius: 20px; font-size: 12px;">Active</span>
+                    </td>
+                    <td style="padding: 20px;">
+                        <div style="display: flex; gap: 10px;">
+                            <button class="icon-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="icon-btn" title="Ban" style="color: #e17055;"><i class="fas fa-ban"></i></button>
+                            <button class="icon-btn" title="Delete" style="color: #d63031;"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.icon-btn:hover {
+    color: var(--primary-color);
+}
+.admin-table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+</style>
+{% endblock %}

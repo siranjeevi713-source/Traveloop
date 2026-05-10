@@ -1,0 +1,97 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block title %}System Settings{% endblock %}
+
+{% block content %}
+<div class="admin-settings-container">
+    <div class="section-header">
+        <h2>System Settings</h2>
+    </div>
+
+    <div class="glass-card" style="margin-top: 30px; padding: 30px;">
+        <div class="settings-section">
+            <h4 style="margin-bottom: 20px;">General Configuration</h4>
+            <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="form-group">
+                    <label>Application Name</label>
+                    <input type="text" class="glass-input" value="Traveloop">
+                </div>
+                <div class="form-group">
+                    <label>Support Email</label>
+                    <input type="email" class="glass-input" value="support@traveloop.com">
+                </div>
+                <div class="form-group">
+                    <label>Maintenance Mode</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="m-mode">
+                        <label for="m-mode"></label>
+                        <span style="margin-left: 10px; opacity: 0.7;">Off</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>User Registration</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="u-reg" checked>
+                        <label for="u-reg"></label>
+                        <span style="margin-left: 10px; opacity: 0.7;">Enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section" style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+            <h4 style="margin-bottom: 20px;">Security & API</h4>
+            <div class="form-grid" style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Google Maps API Key</label>
+                    <input type="password" class="glass-input" value="************************">
+                </div>
+                <div class="form-group">
+                    <label>JWT Secret Key</label>
+                    <input type="password" class="glass-input" value="************************">
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: right;">
+            <button class="btn-primary">Save System Settings</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.toggle-switch {
+    display: flex;
+    align-items: center;
+}
+.toggle-switch input {
+    display: none;
+}
+.toggle-switch label {
+    width: 45px;
+    height: 22px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.toggle-switch label::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+.toggle-switch input:checked + label {
+    background: var(--primary-color);
+}
+.toggle-switch input:checked + label::after {
+    left: 25px;
+}
+</style>
+{% endblock %}

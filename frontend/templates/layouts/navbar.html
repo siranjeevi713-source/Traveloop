@@ -1,0 +1,59 @@
+<header class="navbar">
+    <div class="nav-left">
+        <div class="greeting">
+            <h1>Hi, <span id="user-name">{{ current_user.full_name.split(' ')[0] if current_user.is_authenticated else 'Explorer' }}</span>! 👋</h1>
+            <p>Ready for your next adventure?</p>
+        </div>
+    </div>
+    
+    <div class="nav-center">
+        <div class="search-bar glass-input">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for destinations, activities...">
+        </div>
+    </div>
+    
+    <div class="nav-right">
+        <div class="nav-icon-btn" id="notif-trigger">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+            
+            <div class="notification-dropdown glass-card" id="notif-dropdown">
+                <div class="notif-header">
+                    <h4>Notifications</h4>
+                    <span class="mark-all">Mark all read</span>
+                </div>
+                <div class="notif-list" id="notif-items">
+                    <div class="notif-item unread">
+                        <div class="notif-icon trip"><i class="fas fa-plane"></i></div>
+                        <div class="notif-content">
+                            <h5>Trip Reminder</h5>
+                            <p>Your Goa trip starts in 2 days! Don't forget to pack.</p>
+                            <span class="notif-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon budget"><i class="fas fa-wallet"></i></div>
+                        <div class="notif-content">
+                            <h5>Budget Alert</h5>
+                            <p>You've reached 80% of your Kerala trip budget.</p>
+                            <span class="notif-time">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="notif-footer">
+                    <a href="#">View All</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-profile-dropdown">
+            <img src="{{ url_for('static', filename=current_user.profile_image if current_user.profile_image else 'images/avatars/default.png') }}" alt="Profile" class="profile-img" id="nav-profile-img">
+            <div class="profile-info">
+                <span class="profile-name">{{ current_user.full_name if current_user.is_authenticated else 'Guest' }}</span>
+                <span class="profile-role">Wanderer</span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+</header>

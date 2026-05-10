@@ -1,0 +1,219 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card glass-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-suitcase"></i>
+        </div>
+        <div class="stat-info">
+            <p>Upcoming Trips</p>
+            <h3>2</h3>
+            <p><small>Trips planned</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon green">
+            <i class="fas fa-globe-americas"></i>
+        </div>
+        <div class="stat-info">
+            <p>Countries to Visit</p>
+            <h3>5</h3>
+            <p><small>On your list</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <div class="stat-info">
+            <p>Total Budget</p>
+            <h3>₹1,25,000</h3>
+            <p><small>Across all trips</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon red">
+            <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="stat-info">
+            <p>Days of Adventure</p>
+            <h3>18</h3>
+            <p><small>Days planned</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <div class="dashboard-left">
+        <div class="section-header">
+            <h2>Upcoming Trips</h2>
+            <a href="{{ url_for('dashboard.my_trips') }}" class="view-all">View All</a>
+        </div>
+        
+        <div class="trips-row">
+            <div class="trip-card-mini glass-card hover-scale">
+                <div class="trip-img">
+                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1000&auto=format&fit=crop" alt="Kerala">
+                    <span class="trip-badge">In 15 days</span>
+                </div>
+                <div class="trip-details">
+                    <h4>Kerala Getaway 🌴</h4>
+                    <div class="trip-info-row">
+                        <span><i class="far fa-calendar"></i> 20 May - 26 May, 2025</span>
+                    </div>
+                    <div class="trip-info-row">
+                        <span>3 Stops • 6 Days</span>
+                    </div>
+                    <div class="trip-footer">
+                        <span>Budget: ₹45,000</span>
+                        <div class="progress-circle">
+                            <canvas id="progress-1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trip-card-mini glass-card hover-scale">
+                <div class="trip-img">
+                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1000&auto=format&fit=crop" alt="Goa">
+                    <span class="trip-badge" style="background: var(--gradient-warning)">In 32 days</span>
+                </div>
+                <div class="trip-details">
+                    <h4>Goa Trip 🏖️</h4>
+                    <div class="trip-info-row">
+                        <span><i class="far fa-calendar"></i> 6 Jun - 10 Jun, 2025</span>
+                    </div>
+                    <div class="trip-info-row">
+                        <span>2 Stops • 4 Days</span>
+                    </div>
+                    <div class="trip-footer">
+                        <span>Budget: ₹30,000</span>
+                        <div class="progress-circle">
+                            <canvas id="progress-2"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-header" style="margin-top: 40px;">
+            <h2>Top Destinations For You</h2>
+            <a href="{{ url_for('dashboard.activities') }}" class="view-all">Explore More →</a>
+        </div>
+        
+        <div class="destinations-row">
+            <div class="destination-card-mini glass-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop" alt="Bali">
+                <div class="dest-overlay">
+                    <h4>Bali, Indonesia</h4>
+                    <p>From ₹55,000</p>
+                </div>
+            </div>
+            <div class="destination-card-mini glass-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1000&auto=format&fit=crop" alt="Switzerland">
+                <div class="dest-overlay">
+                    <h4>Switzerland</h4>
+                    <p>From ₹95,000</p>
+                </div>
+            </div>
+            <div class="destination-card-mini glass-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1528181304800-2f140819898c?q=80&w=1000&auto=format&fit=crop" alt="Thailand">
+                <div class="dest-overlay">
+                    <h4>Thailand</h4>
+                    <p>From ₹40,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard-right">
+        <div class="section-header">
+            <h2>Budget Summary</h2>
+            <div class="dropdown-small">
+                <span>This Month</span> <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        
+        <div class="budget-summary-card glass-card">
+            <div class="chart-container">
+                <canvas id="budget-doughnut"></canvas>
+                <div class="chart-center-text">
+                    <span class="total-amount">₹75,000</span>
+                    <span class="label">Total</span>
+                </div>
+            </div>
+            
+            <div class="budget-legend">
+                <div class="legend-item">
+                    <span class="dot blue"></span>
+                    <span>Transport</span>
+                    <span class="amount">₹20,000</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot green"></span>
+                    <span>Stay</span>
+                    <span class="amount">₹25,000</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot yellow"></span>
+                    <span>Food</span>
+                    <span class="amount">₹10,000</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot red"></span>
+                    <span>Activities</span>
+                    <span class="amount">₹12,000</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot purple"></span>
+                    <span>Others</span>
+                    <span class="amount">₹8,000</span>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('dashboard.budget') }}" class="breakdown-link">View Full Breakdown →</a>
+        </div>
+        
+        <div class="section-header" style="margin-top: 40px;">
+            <h2>Quick Actions</h2>
+        </div>
+        
+        <div class="quick-actions-grid">
+            <a href="{{ url_for('dashboard.create_trip') }}" class="action-btn glass-card hover-scale">
+                <div class="action-icon" style="background: rgba(108, 92, 231, 0.1); color: #6c5ce7;">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <span>Create New Trip</span>
+            </a>
+            <a href="{{ url_for('dashboard.activities') }}" class="action-btn glass-card hover-scale">
+                <div class="action-icon" style="background: rgba(85, 239, 196, 0.1); color: #00b894;">
+                    <i class="fas fa-search"></i>
+                </div>
+                <span>Search Activities</span>
+            </a>
+            <a href="{{ url_for('dashboard.packing_list') }}" class="action-btn glass-card hover-scale">
+                <div class="action-icon" style="background: rgba(253, 203, 110, 0.1); color: #e17055;">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <span>Add Packing List</span>
+            </a>
+            <a href="{{ url_for('dashboard.itinerary') }}" class="action-btn glass-card hover-scale">
+                <div class="action-icon" style="background: rgba(129, 236, 236, 0.1); color: #00cec9;">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span>View Itinerary</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block title %}System Reports{% endblock %}
+
+{% block content %}
+<div class="admin-reports-container">
+    <div class="section-header">
+        <h2>System Reports</h2>
+    </div>
+
+    <div class="reports-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+        <div class="glass-card report-card" style="padding: 25px; text-align: center;">
+            <div class="report-icon" style="font-size: 40px; color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h4>User Activity Report</h4>
+            <p style="opacity: 0.7; font-size: 13px; margin-top: 10px;">Monthly summary of user logins and trip creations.</p>
+            <button class="btn-primary" style="margin-top: 20px; width: 100%;">Generate PDF</button>
+        </div>
+
+        <div class="glass-card report-card" style="padding: 25px; text-align: center;">
+            <div class="report-icon" style="font-size: 40px; color: #00cec9; margin-bottom: 20px;">
+                <i class="fas fa-file-csv"></i>
+            </div>
+            <h4>Financial Analytics</h4>
+            <p style="opacity: 0.7; font-size: 13px; margin-top: 10px;">Export all trip budget data for financial analysis.</p>
+            <button class="btn-primary" style="margin-top: 20px; width: 100%; background: #00cec9;">Export CSV</button>
+        </div>
+
+        <div class="glass-card report-card" style="padding: 25px; text-align: center;">
+            <div class="report-icon" style="font-size: 40px; color: #e17055; margin-bottom: 20px;">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <h4>Destination Trends</h4>
+            <p style="opacity: 0.7; font-size: 13px; margin-top: 10px;">Statistical report on most visited countries and cities.</p>
+            <button class="btn-primary" style="margin-top: 20px; width: 100%; background: #e17055;">View Analytics</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

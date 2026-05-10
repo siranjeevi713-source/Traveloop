@@ -1,0 +1,157 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block title %}System Overview{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card glass-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <p>Total Users</p>
+            <h3>{{ stats.total_users }}</h3>
+            <p><small>Active members</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon green">
+            <i class="fas fa-route"></i>
+        </div>
+        <div class="stat-info">
+            <p>Total Trips</p>
+            <h3>{{ stats.total_trips }}</h3>
+            <p><small>Created by users</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-user-check"></i>
+        </div>
+        <div class="stat-info">
+            <p>Active Users</p>
+            <h3>{{ stats.active_users }}</h3>
+            <p><small>Last 30 days</small></p>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-card">
+        <div class="stat-icon red">
+            <i class="fas fa-search-location"></i>
+        </div>
+        <div class="stat-info">
+            <p>Destinations</p>
+            <h3>128</h3>
+            <p><small>In database</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <div class="dashboard-left">
+        <div class="section-header">
+            <h2>User Growth & Activity</h2>
+        </div>
+        <div class="glass-card" style="padding: 20px; height: 300px;">
+            <canvas id="growthChart"></canvas>
+        </div>
+        
+        <div class="section-header" style="margin-top: 40px;">
+            <h2>Top Destinations</h2>
+        </div>
+        <div class="destinations-row">
+            {% for dest in stats.popular_destinations %}
+            <div class="destination-card-mini glass-card">
+                <div class="dest-overlay">
+                    <h4>{{ dest.destination_name }}</h4>
+                    <p>{{ dest.trip_count }} Trips Created</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="glass-card" style="padding: 20px; width: 100%; text-align: center;">
+                <p>No popular destinations found yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="dashboard-right">
+        <div class="section-header">
+            <h2>System Health</h2>
+        </div>
+        <div class="glass-card" style="padding: 20px;">
+            <div class="chart-container">
+                <canvas id="healthChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section-header" style="margin-top: 40px;">
+            <h2>Recent Admin Logs</h2>
+        </div>
+        <div class="glass-card" style="padding: 0;">
+            <div class="log-list" style="padding: 15px;">
+                <div class="log-item" style="display: flex; gap: 10px; margin-bottom: 10px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
+                    <span style="color: var(--primary-color)">[10:45]</span>
+                    <span>Admin login from 127.0.0.1</span>
+                </div>
+                <div class="log-item" style="display: flex; gap: 10px; margin-bottom: 10px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
+                    <span style="color: var(--primary-color)">[09:12]</span>
+                    <span>System settings updated</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Growth Chart
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    new Chart(growthCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'User Signups',
+                data: [120, 190, 300, 500, 800, 1200],
+                borderColor: '#6c5ce7',
+                tension: 0.4,
+                fill: true,
+                backgroundColor: 'rgba(108, 92, 231, 0.1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { grid: { color: 'rgba(255,255,255,0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    // Health Chart (Doughnut)
+    const healthCtx = document.getElementById('healthChart').getContext('2d');
+    new Chart(healthCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Storage', 'CPU', 'Memory'],
+            datasets: [{
+                data: [45, 25, 30],
+                backgroundColor: ['#6c5ce7', '#00cec9', '#e17055'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            cutout: '80%',
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+});
+</script>
+{% endblock %}
